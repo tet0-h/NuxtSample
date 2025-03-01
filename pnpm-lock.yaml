@@ -24,9 +24,18 @@ importers:
         specifier: latest
         version: 4.5.0(vue@3.5.13(typescript@5.8.2))
     devDependencies:
+      '@eslint/js':
+        specifier: ^9.21.0
+        version: 9.21.0
       prettier:
         specifier: 3.5.2
         version: 3.5.2
+      typescript:
+        specifier: ^5.8.2
+        version: 5.8.2
+      typescript-eslint:
+        specifier: ^8.25.0
+        version: 8.25.0(eslint@9.21.0(jiti@2.4.2))(typescript@5.8.2)
 
 packages:
 
@@ -3440,6 +3449,13 @@ packages:
   type-fest@4.35.0:
     resolution: {integrity: sha512-2/AwEFQDFEy30iOLjrvHDIH7e4HEWH+f1Yl1bI5XMqzuoCUqwYCdxachgsgv0og/JdVZUhbfjcJAoHj5L1753A==}
     engines: {node: '>=16'}
+
+  typescript-eslint@8.25.0:
+    resolution: {integrity: sha512-TxRdQQLH4g7JkoFlYG3caW5v1S6kEkz8rqt80iQJZUYPq1zD1Ra7HfQBJJ88ABRaMvHAXnwRvRB4V+6sQ9xN5Q==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    peerDependencies:
+      eslint: ^8.57.0 || ^9.0.0
+      typescript: '>=4.8.4 <5.8.0'
 
   typescript@5.8.2:
     resolution: {integrity: sha512-aJn6wq13/afZp/jT9QZmwEjDqqvSGp1VT5GVg+f/t6/oVyrgXM6BY1h9BRh/O5p3PlUPAe+WuiEZOmb/49RqoQ==}
@@ -7690,6 +7706,16 @@ snapshots:
   type-fest@0.21.3: {}
 
   type-fest@4.35.0: {}
+
+  typescript-eslint@8.25.0(eslint@9.21.0(jiti@2.4.2))(typescript@5.8.2):
+    dependencies:
+      '@typescript-eslint/eslint-plugin': 8.25.0(@typescript-eslint/parser@8.25.0(eslint@9.21.0(jiti@2.4.2))(typescript@5.8.2))(eslint@9.21.0(jiti@2.4.2))(typescript@5.8.2)
+      '@typescript-eslint/parser': 8.25.0(eslint@9.21.0(jiti@2.4.2))(typescript@5.8.2)
+      '@typescript-eslint/utils': 8.25.0(eslint@9.21.0(jiti@2.4.2))(typescript@5.8.2)
+      eslint: 9.21.0(jiti@2.4.2)
+      typescript: 5.8.2
+    transitivePeerDependencies:
+      - supports-color
 
   typescript@5.8.2: {}
 
