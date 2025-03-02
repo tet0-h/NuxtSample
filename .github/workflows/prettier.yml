@@ -1,0 +1,43 @@
+name: Prettier CI
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+jobs:
+  prettier:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [22]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'
+
+      - name: Install dependencies
+          run: pnpm install --save-dev prettier
+
+      - name: Format code with Prittier
+        if: steps.changed-files.outputs.files != ''
+        run: |
+          CHANGED_FILES="${{ steps.changed-files.outputs.files }}"
+          FILES=()
+          while IFS=$'\n' read -r -d $'\n' file; do
+            FILES+=("$file")
+          done < <(echo "$CHANGED_FILES")
+          pnpm exec prettier --write "${FILES[@]}"
+
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Apply Prettier Change"
