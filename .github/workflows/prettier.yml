@@ -42,6 +42,7 @@ jobs:
       - name: Format code with Prittier
         if: steps.changed-files.outputs.files != ''
         run: |
+          set -x
           CHANGED_FILES="${{ steps.changed-files.outputs.files }}"
           FILES=()
           while IFS=$'\n' read -r -d $'\n' file; do
