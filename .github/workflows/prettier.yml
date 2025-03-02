@@ -24,6 +24,7 @@ jobs:
             exit 0
           fi
           echo "files=$CHANGED_FILES" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
