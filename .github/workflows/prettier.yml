@@ -14,8 +14,18 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: pnpm/action-setup@v4
-        name: Install pnpm
+      - name: Get changed files
+        id: changed-files
+        run: |
+          CHANGED_FILES=$(git diff --name-only --diff-filter=AMCR --relative=./ ${{ github.event.pull_request.base.sha }} HEAD)
+          if [[ -z "$CHANGED_FILES" ]]; then
+            echo "::set-output name=files::"
+            exit 0
+          fi
+          echo "::set-output name=files::$CHANGED_FILES"
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
