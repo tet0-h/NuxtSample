@@ -19,10 +19,10 @@ jobs:
         run: |
           CHANGED_FILES=$(git diff --name-only --diff-filter=AMCR --relative=./ ${{ github.event.pull_request.base.sha }} HEAD)
           if [[ -z "$CHANGED_FILES" ]]; then
-            echo "::set-output name=files::"
+            echo "files=" >> $GITHUB_OUTPUT # 空文字列を files 出力変数に設定
             exit 0
           fi
-          echo "::set-output name=files::$CHANGED_FILES"
+          echo "files=$CHANGED_FILES" >> $GITHUB_OUTPUT # 変更されたファイルリストを files 出力変数に設定
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
