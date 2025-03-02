@@ -17,7 +17,6 @@ jobs:
       - name: Get changed files
         id: changed-files
         run: |
-          set -x
           CHANGED_FILES=$(git diff --name-only --diff-filter=AMCR origin/${{ github.base_ref }})
           if [[ -z "$CHANGED_FILES" ]]; then
             # echo "files=" >> $GITHUB_OUTPUT
@@ -42,7 +41,6 @@ jobs:
       - name: Format code with Prittier
         if: steps.changed-files.outputs.CHANGED_FILES != ''
         run: |
-          set -x
           CHANGED_FILES="${{ steps.changed-files.outputs.CHANGED_FILES }}"
           FILES=()
           while IFS=$'\n' read -r -d $'\n' file; do
