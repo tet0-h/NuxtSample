@@ -4,6 +4,7 @@
 />
     <NuxtWelcome
 
+
  />
   </div>
 </template>
