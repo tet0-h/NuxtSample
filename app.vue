@@ -3,6 +3,7 @@
     <NuxtRouteAnnouncer 
 />
     <NuxtWelcome
+
  />
   </div>
 </template>
