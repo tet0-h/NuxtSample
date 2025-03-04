@@ -25,7 +25,7 @@ jobs:
         run: pnpm install
 
       - name: Run Vitest
-        run: pnpm test:unit
+        run: pnpm test:unit:coverage
 
       - name: Show coverage
         uses: davelosert/vitest-coverage-report-action@v2
